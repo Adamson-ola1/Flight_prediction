@@ -1,11 +1,11 @@
 export default function Footer() {
   return (
     <footer className="footer">
-      <p>
-        Flight Price Prediction — portfolio project. Prices are modeled
-        from a synthetic formula (no real fare data); see{" "}
-        <code>docs/model_card.md</code> for details.
-      </p>
+      <div>
+        <strong>Flight Price Predictor</strong>
+        <span>Machine-learning fare estimation demo</span>
+      </div>
+      <span>Predictions are modeled from a synthetic price target.</span>
     </footer>
   );
 }

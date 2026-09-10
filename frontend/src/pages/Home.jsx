@@ -2,36 +2,49 @@ import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
-    <div className="page">
-      <h1>Predict NYC Flight Ticket Prices</h1>
-      <p>
-        This demo trains five regression models (Linear Regression, Random
-        Forest, XGBoost, LightGBM, and a Stacking Ensemble) on the
-        nycflights13 dataset and serves the best one through a FastAPI
-        backend.
-      </p>
-      <div className="home-actions">
-        <Link className="btn btn-primary" to="/predict">
-          Get a price estimate →
-        </Link>
-        <Link className="btn btn-secondary" to="/model-info">
-          View model performance
-        </Link>
-      </div>
-      <div className="home-cards">
-        <div className="card">
-          <h3>1. Data cleaning</h3>
-          <p>Duplicates removed, midnight-hour quirk fixed, distance outliers trimmed.</p>
+    <div className="page home-page">
+      <section className="home-hero">
+        <div className="home-copy">
+          <span className="eyebrow">MACHINE LEARNING · FLIGHT ANALYTICS</span>
+          <h1>Predict the price before you fly.</h1>
+          <p>
+            Estimate domestic flight fares departing New York using a trained regression pipeline,
+            compare model performance, and keep a history of your predictions.
+          </p>
+          <div className="home-actions">
+            <Link className="predict-button home-primary" to="/predict">✈  Start predicting</Link>
+            <Link className="home-secondary" to="/model-info">Explore model performance →</Link>
+          </div>
         </div>
-        <div className="card">
-          <h3>2. Feature engineering</h3>
-          <p>Season/time-of-day buckets, route &amp; destination frequency encodings, cyclical time features.</p>
+        <div className="hero-visual" aria-hidden="true">
+          <div className="flight-card">
+            <span>ESTIMATED FARE</span>
+            <strong>$—</strong>
+            <small>Enter a flight to begin</small>
+          </div>
+          <div className="orbit orbit-one" />
+          <div className="orbit orbit-two" />
+          <span className="hero-plane">✈</span>
         </div>
-        <div className="card">
-          <h3>3. Model training</h3>
-          <p>Five regressors compared on RMSE, MAE and R²; the best is auto-selected for serving.</p>
-        </div>
-      </div>
+      </section>
+
+      <section className="home-feature-grid">
+        <article className="feature-card">
+          <span className="feature-number">01</span>
+          <h2>Engineer the signal</h2>
+          <p>Time features, route frequency encodings, seasonality and cyclical features prepare the flight data for modeling.</p>
+        </article>
+        <article className="feature-card featured">
+          <span className="feature-number">02</span>
+          <h2>Compare five models</h2>
+          <p>Linear Regression, Random Forest, XGBoost, LightGBM and a Stacking Ensemble compete on the same pipeline.</p>
+        </article>
+        <article className="feature-card">
+          <span className="feature-number">03</span>
+          <h2>Serve the best model</h2>
+          <p>The selected model is exposed through FastAPI for live predictions from this React application.</p>
+        </article>
+      </section>
     </div>
   );
 }

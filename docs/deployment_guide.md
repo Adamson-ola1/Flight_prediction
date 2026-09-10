@@ -7,7 +7,8 @@
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 python main.py                     # trains models, writes models/ and outputs/
-uvicorn backend.main:app --reload  # http://localhost:8000/docs
+
+# http://localhost:8000/docs
 
 # Frontend (separate terminal)
 cd frontend

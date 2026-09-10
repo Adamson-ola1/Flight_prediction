@@ -13,5 +13,5 @@ export function getModelMetrics() {
 }
 
 export function getHealth() {
-  return apiClient.get("/api/health");
+  return apiClient.get("/health");
 }
