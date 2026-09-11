@@ -4,29 +4,20 @@
 
 FROM python:3.11-slim
 
-# Prevent Python from writing .pyc files
 ENV PYTHONDONTWRITEBYTECODE=1
-
-# Send Python output directly to the terminal
 ENV PYTHONUNBUFFERED=1
 
-# Application directory
 WORKDIR /app
 
-
-# ============================================================
-# Install Python dependencies
-# ============================================================
+# Install GNU OpenMP runtime required by ML libraries
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends libgomp1 && \
+    rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
-
-
-# ============================================================
-# Copy application files
-# ============================================================
 
 COPY backend/ ./backend/
 COPY src/ ./src/
@@ -34,11 +25,6 @@ COPY models/ ./models/
 COPY outputs/ ./outputs/
 COPY config.py .
 COPY main.py .
-
-
-# ============================================================
-# FastAPI
-# ============================================================
 
 EXPOSE 8000
 
