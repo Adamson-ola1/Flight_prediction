@@ -153,6 +153,13 @@ def health():
         model_loaded=model_loaded,
     )
 
+@app.get(
+    "/api/health",
+    response_model=HealthResponse,
+    tags=["System"],
+)
+def api_health():
+    return health()
 
 # ─────────────────────────────────────────────
 # MODEL INFO
