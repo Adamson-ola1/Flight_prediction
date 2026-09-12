@@ -1,9 +1,6 @@
 # syntax=docker/dockerfile:1
 
-# ==========================================
-# BUILD STAGE
-# ==========================================
-FROM node:20-alpine AS build
+FROM node:20-alpine AS frontend-builder
 
 WORKDIR /app
 
@@ -19,16 +16,13 @@ ENV VITE_API_BASE_URL=${VITE_API_BASE_URL}
 RUN npm run build
 
 
-# ==========================================
-# PRODUCTION STAGE
-# ==========================================
 FROM nginx:1.27-alpine
 
 RUN rm -f /etc/nginx/conf.d/default.conf
 
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+COPY --from=frontend-builder /app/dist /usr/share/nginx/html
 
 EXPOSE 80
 
