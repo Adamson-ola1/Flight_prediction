@@ -138,6 +138,8 @@ jobs:
 
 
       - name: Build frontend
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL }}
         run: |
           npm run build
 
@@ -230,6 +232,9 @@ jobs:
           context: .
           file: ./frontend/Dockerfile
           push: true
+
+          build-args: |
+            VITE_API_BASE_URL=${{ secrets.VITE_API_BASE_URL }}
 
           tags: |
             ghcr.io/${{ steps.repo.outputs.repository }}-frontend:latest
